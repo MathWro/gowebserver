@@ -1,5 +1,5 @@
 // Your GitHub username, pass it as a parameter to this seed job
-GITHUB_USERNAME="mathwro"
+GITHUB_USERNAME="MathWro"
 
 projectName = "webserver"
 repositoryUrl = "https://github.com/mathwro/gowebserver.git"
