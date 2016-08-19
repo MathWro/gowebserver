@@ -153,3 +153,4 @@ buildPipelineView(pipelineName) {
     showPipelineDefinitionHeader()
     refreshFrequency(60)
 }
+}
