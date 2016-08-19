@@ -9,7 +9,7 @@ import (
 )
 
 func hello(w http.ResponseWriter, r *http.Request) {
-    io.WriteString(w, "Hello world!")
+    io.WriteString(w, "Hello world, from Team Never Loose!")
 }
 
 func to_roman(n int)  string {

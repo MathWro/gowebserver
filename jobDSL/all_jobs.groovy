@@ -1,8 +1,8 @@
 // Your GitHub username, pass it as a parameter to this seed job
-// GITHUB_USERNAME="john-doe"
+GITHUB_USERNAME="mathwro"
 
 projectName = "webserver"
-repositoryUrl = "https://github.com/${GITHUB_USERNAME}/gowebserver.git"
+repositoryUrl = "https://github.com/mathwro/gowebserver.git"
 
 buildJobName = "1.build-${projectName}_GEN"
 testJobName = "2.test-${projectName}_GEN"
@@ -34,8 +34,11 @@ job(buildJobName) {
             [ $? -ne 0 ] && exit 1
             sudo docker kill ${cid}
             sudo docker rm ${cid}'''.stripIndent())
-    }
+    wrappers {
+            pretestedIntegration("SQUASHED", "origin/ready/**", "origin")   
+    }  
     publishers {
+      pretestedIntegration()
         downstreamParameterized {
             trigger(testJobName) {
                 condition('SUCCESS')
@@ -121,7 +124,7 @@ job(releaseJobName) {
         shell('''\
                 sudo docker ps |grep ${GITHUB_USERNAME}/http-app
                 sudo docker images |grep ${GITHUB_USERNAME}/http-app'''.stripIndent())
-    }
+ }
 }
 
 listView(viewName) {
